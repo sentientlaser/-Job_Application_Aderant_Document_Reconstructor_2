@@ -17,9 +17,17 @@ namespace DocumentReconstructor
         /// <summary>
         /// The reconstructor being tested.
         /// </summary>
-        public readonly IDocumentReconstructor Reconstructor;
+        public IDocumentReconstructor Reconstructor;
 
 
+        /// <summary>
+        /// This method is used to assign the implementation of the <see cref="IDocumentReconstructor"/> interface to <see cref="DocumentConstructorImpl"/>
+        /// </summary>
+        [SetUp]
+        public void SetupDocumentConstructorImpl()  // NOTE: This method of instantiating an implementation is pretty tightly coupled, I'd rather use an injection framework, but that's more work than needed here.
+        {
+            Reconstructor = new DocumentConstructorImpl();
+        }
 
 
         /// <summary>
@@ -40,7 +48,7 @@ namespace DocumentReconstructor
         /// <summary>
         /// The test fragements as a list of string.  
         /// </summary>
-        private static TestCase test1 = ( // I like to use tuples to keep data coupled nicely, rather than have tonnes of seperate delarations
+        private static TestCase test1 = ( // NOTE: I like to use tuples to keep data coupled nicely, rather than have tonnes of seperate delarations
             new List<String>
             {
                 "m quaerat voluptatem.",
@@ -76,7 +84,7 @@ namespace DocumentReconstructor
         {
             get
             {
-                yield return new TestCaseData(test1.Item1).Returns(test1.Item2); // If I had more test cases  would write a few extension methods to make this read easier.
+                yield return new TestCaseData(test1.Item1).Returns(test1.Item2); // NOTE: If I had more test cases  would write a few extension methods to make this read easier.
             }
         }
     }

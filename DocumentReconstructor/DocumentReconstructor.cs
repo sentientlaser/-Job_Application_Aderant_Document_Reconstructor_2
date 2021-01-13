@@ -12,7 +12,18 @@ namespace DocumentReconstructor
     /// </summary>
     public interface IDocumentReconstructor
     {
-        public string Reconstruct(List<string> fragments);
+        string Reconstruct(List<string> fragments);
     }
 
+
+    /// <summary>
+    /// Implementation for <see cref="IDocumentReconstructor"/>
+    /// </summary>
+    public class DocumentConstructorImpl : IDocumentReconstructor
+    {
+        public string Reconstruct(List<string> fragments)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
